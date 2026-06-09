@@ -1,0 +1,57 @@
+---
+// Logo de marca — wordmark "PALCO ZERO" com símbolo.
+---
+<a href="#topo" class="logo" aria-label="Palco Zero — início">
+  <span class="logo-mark" aria-hidden="true">
+    <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="spotbeam" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#b06bff" stop-opacity="0.95" />
+          <stop offset="1" stop-color="#7c3aed" stop-opacity="0.15" />
+        </linearGradient>
+      </defs>
+      <circle cx="22" cy="9" r="4" fill="#ffd9a8" />
+      <path d="M22 12 L36 38 H8 Z" fill="url(#spotbeam)" />
+      <ellipse cx="22" cy="38" rx="11" ry="2.4" fill="#b06bff" opacity="0.55" />
+    </svg>
+  </span>
+  <span class="logo-text">
+    <strong>PALCO</strong><em>ZERO</em>
+  </span>
+</a>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: #fff;
+  }
+  .logo-mark {
+    width: 2.1rem;
+    height: 2.1rem;
+    display: grid;
+    place-items: center;
+    filter: drop-shadow(0 4px 12px rgba(151, 71, 255, 0.45));
+  }
+  .logo-mark svg {
+    width: 100%;
+    height: 100%;
+  }
+  .logo-text {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    display: inline-flex;
+    gap: 0.28rem;
+  }
+  .logo-text strong { font-weight: 800; }
+  .logo-text em {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--color-violet-300);
+  }
+</style>

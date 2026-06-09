@@ -1,0 +1,152 @@
+---
+import SceneBg from './SceneBg.astro';
+const phases = [
+  {
+    tag: 'Manhã',
+    title: 'Do bloqueio ao desbloqueio',
+    lead: 'Sua primeira experiência com ilusionismo estratégico.',
+    text: 'Issao Imamura conduz uma abertura que quebra os padrões internos que travam sua comunicação. Você entende, pela primeira vez, de onde vem o medo do julgamento — e o que fazer com ele.',
+  },
+  {
+    tag: 'Tarde',
+    title: 'A construção da palestra',
+    lead: 'O framework P.Z. entra em ação.',
+    text: 'Edson Lins conduz o desbloqueio comportamental e trabalha sua identidade de palestrante. Você monta o roteiro: abertura de impacto, mensagem central, histórias âncora e CTA — com a sua voz, a sua história e o seu posicionamento.',
+  },
+  {
+    tag: 'Noite',
+    title: 'O palco é seu',
+    lead: 'Laboratório de presença e performance.',
+    text: 'Cada participante sobe ao palco e apresenta sua palestra para a turma, com gravação profissional e feedback ao vivo de ambos os mentores. Você vai embora com o vídeo.',
+  },
+];
+---
+
+<section id="agenda" class="section agenda">
+  <SceneBg src="/img/scenes/concert_crowd.webp" position="center 30%" opacity={0.28} />
+  <div class="blob" style="background: var(--color-violet-700); width: 480px; height: 480px; bottom: -120px; left: -120px; opacity: 0.35;"></div>
+  <div class="container-x">
+    <div class="agenda-head" data-reveal>
+      <span class="kicker">1 dia de imersão total</span>
+      <h2 class="agenda-title">
+        Agenda completa para você sair com sua
+        <span class="text-gradient">primeira palestra gravada</span>
+      </h2>
+      <p class="agenda-lead">
+        Os mentores estarão 100% focados na sua transformação, do começo ao fim.
+      </p>
+    </div>
+
+    <ol class="timeline">
+      {phases.map((p, i) => (
+        <li class="phase" data-reveal data-reveal-delay={(i % 3) + 1}>
+          <div class="phase-marker" aria-hidden="true">
+            <span>{i + 1}</span>
+          </div>
+          <div class="phase-card glass">
+            <span class="phase-tag">{p.tag}</span>
+            <h3 class="phase-title">{p.title}</h3>
+            <p class="phase-lead">{p.lead}</p>
+            <p class="phase-text">{p.text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .agenda { isolation: isolate; }
+  .agenda .container-x { position: relative; z-index: 2; }
+  .agenda-head { max-width: 720px; }
+  .agenda-title {
+    margin-top: 1.1rem;
+    font-size: clamp(1.8rem, 4.4vw, 2.85rem);
+    font-weight: 800;
+  }
+  .agenda-lead {
+    margin-top: 1.2rem;
+    font-size: 1.1rem;
+    color: color-mix(in srgb, #fff 70%, transparent);
+  }
+  .timeline {
+    list-style: none;
+    margin: 3.4rem 0 0;
+    padding: 0;
+    position: relative;
+    display: grid;
+    gap: 1.6rem;
+  }
+  .phase {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.4rem;
+    align-items: start;
+  }
+  .phase-marker {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    flex-shrink: 0;
+  }
+  .phase-marker span {
+    width: 3rem;
+    height: 3rem;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: #fff;
+    background: linear-gradient(150deg, var(--color-violet-600), var(--color-glow-500));
+    box-shadow: 0 10px 28px -10px color-mix(in srgb, var(--color-glow-500) 80%, transparent);
+  }
+  /* connector line */
+  .phase:not(:last-child) .phase-marker::after {
+    content: '';
+    position: absolute;
+    top: 3.4rem;
+    bottom: -2.2rem;
+    width: 2px;
+    background: linear-gradient(var(--color-violet-500), transparent);
+  }
+  .phase-card {
+    padding: 1.8rem 1.8rem;
+    transition: transform 0.4s var(--ease-smooth);
+  }
+  .phase-card:hover { transform: translateX(6px); }
+  .phase-tag {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-violet-300);
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--color-violet-400) 28%, transparent);
+  }
+  .phase-title {
+    margin-top: 0.9rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  .phase-lead {
+    margin-top: 0.5rem;
+    color: var(--color-violet-300);
+    font-weight: 500;
+  }
+  .phase-text {
+    margin-top: 0.7rem;
+    color: color-mix(in srgb, #fff 68%, transparent);
+    font-size: 0.98rem;
+  }
+  @media (max-width: 560px) {
+    .phase { grid-template-columns: 1fr; }
+    .phase-marker { display: none; }
+  }
+</style>

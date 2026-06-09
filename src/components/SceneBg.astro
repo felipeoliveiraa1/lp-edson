@@ -1,0 +1,78 @@
+---
+// Fundo fotográfico decorativo com máscara escura por cima (mostra "só um pouco").
+// Use dentro de uma <section> que tenha position: relative + isolation: isolate.
+interface Props {
+  src: string;
+  position?: string; // object-position
+  opacity?: number; // 0–1, quanto da foto aparece
+  tone?: 'violet' | 'night';
+}
+const { src, position = 'center', opacity = 0.32, tone = 'violet' } = Astro.props;
+---
+
+<div
+  class="scene-bg"
+  aria-hidden="true"
+  data-tone={tone}
+  style={`--pos:${position}; --op:${opacity};`}
+>
+  <img src={src} alt="" loading="lazy" decoding="async" />
+  <div class="scene-mask"></div>
+  <div class="scene-grain"></div>
+</div>
+
+<style>
+  .scene-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .scene-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--pos);
+    opacity: var(--op);
+    filter: saturate(0.85) contrast(1.02);
+    transform: scale(1.02);
+  }
+  /* Máscara escura: forte nas bordas/topo/base, deixa respirar no miolo */
+  .scene-mask {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        to bottom,
+        var(--color-night-950) 0%,
+        color-mix(in srgb, var(--color-night-950) 62%, transparent) 30%,
+        color-mix(in srgb, var(--color-night-950) 58%, transparent) 70%,
+        var(--color-night-950) 100%
+      ),
+      radial-gradient(130% 90% at 50% 45%, transparent 18%, var(--color-night-950) 92%);
+  }
+  /* Tonalização roxa pra casar com a marca */
+  .scene-bg[data-tone='violet'] .scene-mask::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      80% 60% at 25% 30%,
+      color-mix(in srgb, var(--color-violet-700) 40%, transparent),
+      transparent 70%
+    );
+    mix-blend-mode: screen;
+    opacity: 0.5;
+  }
+  .scene-grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.5;
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--color-violet-400) 5%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--color-violet-400) 5%, transparent) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%);
+  }
+</style>

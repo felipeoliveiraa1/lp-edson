@@ -1,0 +1,23 @@
+# build output
+dist/
+# generated types
+.astro/
+# dependencies
+node_modules/
+# logs
+npm-debug.log*
+# environment variables
+.env
+.env.production
+# macOS
+.DS_Store
+# vercel
+.vercel
+# reference material (not part of the site)
+apple.com_apple_vision_pro/
+metododestiny.com.br/
+
+# source / leftover assets (not used by the site)
+hero-edson.png
+# source jpgs (use os .webp já convertidos)
+public/img/*.jpg

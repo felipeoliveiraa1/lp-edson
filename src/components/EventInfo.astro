@@ -1,0 +1,138 @@
+---
+import Countdown from './Countdown.astro';
+import SceneBg from './SceneBg.astro';
+import { site } from '../data/site';
+
+const info = [
+  {
+    label: 'Data',
+    value: site.eventDateLabel,
+    icon: 'M8 2v3M16 2v3M3 9h18M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z',
+  },
+  {
+    label: 'Horário',
+    value: site.eventTime,
+    icon: 'M12 7v5l3 2M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18z',
+  },
+  {
+    label: 'Local',
+    value: site.eventCity,
+    sub: site.eventVenue,
+    icon: 'M12 21s7-6.5 7-11a7 7 0 1 0-14 0c0 4.5 7 11 7 11zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z',
+  },
+];
+---
+
+<section id="quando" class="section eventinfo">
+  <SceneBg src="/img/scenes/audience_talk.webp" position="center" opacity={0.22} />
+  <div class="blob" style="background: var(--color-glow-500); width: 460px; height: 460px; top: 10%; right: -140px; opacity: 0.28;"></div>
+  <div class="container-x">
+    <div class="ei-card glass" data-reveal>
+      <div class="ei-left">
+        <span class="kicker">Quando e onde</span>
+        <h2 class="ei-title">
+          Reserve a data. <span class="text-gradient">Sua transformação tem endereço.</span>
+        </h2>
+
+        <div class="ei-info-grid">
+          {info.map((it) => (
+            <div class="ei-info">
+              <span class="ei-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d={it.icon} stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <div>
+                <span class="ei-label">{it.label}</span>
+                <span class="ei-value">{it.value}</span>
+                {it.sub && <span class="ei-sub">{it.sub}</span>}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="ei-right">
+        <span class="ei-cd-label">Garanta sua vaga antes que o tempo acabe</span>
+        <Countdown />
+        <a href={site.ctaHref} class="btn btn-primary pulse-ring ei-cta">{site.ctaLabel}</a>
+        <span class="ei-note">Vagas limitadas · turma reduzida para atenção individual</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .eventinfo { isolation: isolate; }
+  .eventinfo .container-x { position: relative; z-index: 2; }
+  .ei-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: clamp(2rem, 5vw, 3.5rem);
+  }
+  .ei-title {
+    margin-top: 1.1rem;
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    font-weight: 800;
+  }
+  .ei-info-grid {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1.3rem;
+  }
+  .ei-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .ei-icon {
+    flex-shrink: 0;
+    width: 2.8rem;
+    height: 2.8rem;
+    display: grid;
+    place-items: center;
+    border-radius: 0.9rem;
+    color: var(--color-violet-300);
+    background: color-mix(in srgb, var(--color-violet-600) 16%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-violet-400) 24%, transparent);
+  }
+  .ei-info > div { display: flex; flex-direction: column; }
+  .ei-label {
+    font-size: 0.74rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-violet-300);
+  }
+  .ei-value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+  }
+  .ei-sub { font-size: 0.92rem; color: color-mix(in srgb, #fff 60%, transparent); }
+
+  .ei-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 1.8rem;
+    border-radius: 1.2rem;
+    background: color-mix(in srgb, var(--color-night-900) 55%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-violet-400) 16%, transparent);
+  }
+  .ei-cd-label {
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-violet-300) 90%, transparent);
+  }
+  .ei-cta { width: 100%; margin-top: 0.4rem; }
+  .ei-note { font-size: 0.85rem; color: color-mix(in srgb, #fff 58%, transparent); }
+
+  @media (min-width: 920px) {
+    .ei-card { grid-template-columns: 1.3fr 1fr; align-items: center; }
+  }
+</style>

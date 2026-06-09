@@ -1,0 +1,64 @@
+---
+// Logos das empresas onde a metodologia já foi aplicada.
+// Placeholders em texto — substitua por <img> dos logos reais quando disponíveis.
+const companies = ['Indústria', 'Varejo', 'Tecnologia', 'Saúde', 'Educação', 'Serviços Financeiros'];
+---
+
+<section class="section companies">
+  <div class="container-x">
+    <div class="companies-head" data-reveal>
+      <span class="kicker">Validação de mercado</span>
+      <h2 class="companies-title">
+        Uma metodologia que já impactou líderes das
+        <span class="text-gradient">maiores empresas do Brasil</span>
+      </h2>
+      <p class="companies-lead">
+        O ilusionismo estratégico e o método comportamental revelados na imersão
+        já foram aplicados em múltiplos segmentos.
+      </p>
+    </div>
+
+    <div class="logos" data-reveal>
+      {companies.map((c) => (
+        <div class="logo-chip">{c}</div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .companies-head { text-align: center; max-width: 720px; margin-inline: auto; }
+  .companies-title {
+    margin-top: 1.1rem;
+    font-size: clamp(1.6rem, 3.8vw, 2.4rem);
+    font-weight: 800;
+  }
+  .companies-lead {
+    margin-top: 1.1rem;
+    color: color-mix(in srgb, #fff 68%, transparent);
+  }
+  .logos {
+    margin-top: 2.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.9rem;
+  }
+  .logo-chip {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.98rem;
+    letter-spacing: 0.02em;
+    color: color-mix(in srgb, #fff 72%, transparent);
+    padding: 0.85rem 1.5rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--color-violet-400) 18%, transparent);
+    background: color-mix(in srgb, var(--color-night-800) 50%, transparent);
+    transition: color 0.3s, border-color 0.3s, transform 0.3s var(--ease-smooth);
+  }
+  .logo-chip:hover {
+    color: #fff;
+    border-color: var(--color-violet-400);
+    transform: translateY(-3px);
+  }
+</style>

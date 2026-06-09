@@ -1,0 +1,49 @@
+---
+const items = [
+  'Palestra gravada no mesmo dia',
+  'Framework P.Z.',
+  'Ilusionismo estratégico',
+  'Presença de palco',
+  'Autoridade real',
+  'Feedback ao vivo dos mentores',
+];
+const loop = [...items, ...items];
+---
+
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee">
+    {loop.map((t) => (
+      <span class="marquee-item">
+        {t}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4 5.7 20.8 8 13.6 2 9.2h7.6z" fill="currentColor"/>
+        </svg>
+      </span>
+    ))}
+  </div>
+</div>
+
+<style>
+  .marquee-band {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    padding-block: 1.1rem;
+    border-block: 1px solid color-mix(in srgb, var(--color-violet-400) 14%, transparent);
+    background: color-mix(in srgb, var(--color-night-900) 60%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 3rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+    color: color-mix(in srgb, #fff 80%, transparent);
+    white-space: nowrap;
+  }
+  .marquee-item svg { color: var(--color-glow-400); }
+</style>

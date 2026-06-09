@@ -1,0 +1,149 @@
+---
+import { site } from '../data/site';
+---
+
+<section class="section guarantee">
+  <div class="guar-glow" aria-hidden="true"></div>
+
+  <div class="container-x guar-inner" data-reveal>
+    <!-- Selo: anel de texto girando (camada isolada) + núcleo estático -->
+    <div class="seal" aria-hidden="true">
+      <svg class="seal-ring" viewBox="0 0 240 240">
+        <defs>
+          <path id="textcircle" d="M120,120 m-97,0 a97,97 0 1,1 194,0 a97,97 0 1,1 -194,0" />
+        </defs>
+        <text>
+          <textPath href="#textcircle" startOffset="0" textLength="609" lengthAdjust="spacing">GARANTIA INCONDICIONAL · 7 DIAS · RISCO ZERO ·</textPath>
+        </text>
+      </svg>
+
+      <div class="seal-core">
+        <span class="seal-num">7</span>
+      </div>
+    </div>
+
+    <span class="kicker">Garantia incondicional</span>
+    <h2 class="guar-title">
+      O risco é nosso. <span class="text-gradient">A decisão é sua.</span>
+    </h2>
+    <p class="guar-text">
+      Você tem <strong>7 dias</strong> para sentir o valor da imersão. Se não
+      fizer sentido para você, devolvemos cada centavo. Simples assim.
+    </p>
+
+    <a href={site.ctaHref} class="btn btn-primary guar-cta">{site.ctaLabel}</a>
+  </div>
+</section>
+
+<style>
+  .guarantee {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    isolation: isolate;
+    padding-top: clamp(2rem, 4vw, 3rem);
+  }
+  .guar-glow {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 26rem;
+    height: 26rem;
+    max-width: 88vw;
+    background: radial-gradient(circle, color-mix(in srgb, var(--color-glow-500) 16%, transparent), transparent 62%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .guar-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Selo */
+  .seal {
+    position: relative;
+    width: clamp(11rem, 26vw, 13rem);
+    height: clamp(11rem, 26vw, 13rem);
+    display: grid;
+    place-items: center;
+    margin-bottom: 2rem;
+  }
+  .seal-ring {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    animation: spin 30s linear infinite;
+    transform-box: border-box;
+    transform-origin: 50% 50%;
+    will-change: transform;
+  }
+  .seal-ring text {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 600;
+    fill: var(--color-violet-300);
+  }
+  .seal-core {
+    position: relative;
+    z-index: 2;
+    width: 66%;
+    height: 66%;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 50% 36%, var(--color-night-700), var(--color-night-950));
+    border: 1px solid color-mix(in srgb, var(--color-violet-400) 40%, transparent);
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--color-violet-400) 12%, transparent),
+      inset 0 0 30px -8px color-mix(in srgb, var(--color-glow-500) 60%, transparent);
+  }
+  .seal-num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(3.2rem, 9vw, 4.4rem);
+    line-height: 1;
+    background: linear-gradient(180deg, #fff, var(--color-violet-300));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .seal-cap {
+    margin-top: 0.35rem;
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-violet-300);
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .guar-title {
+    margin-top: 1rem;
+    font-size: clamp(1.8rem, 4.2vw, 2.6rem);
+    font-weight: 800;
+  }
+  .guar-text {
+    margin-top: 1.1rem;
+    color: color-mix(in srgb, #fff 74%, transparent);
+    max-width: 48ch;
+    font-size: 1.05rem;
+  }
+  .guar-text strong { color: #fff; }
+  .guar-cta { margin-top: 2.2rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .seal-ring { animation: none; }
+  }
+</style>

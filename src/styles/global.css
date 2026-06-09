@@ -1,0 +1,311 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   PALCO ZERO — Design tokens
+   Paleta: Azul-marinho profundo + Roxo / violeta
+   ============================================================ */
+@theme {
+  /* Base / navy */
+  --color-night-950: #04050f;
+  --color-night-900: #070a1c;
+  --color-night-800: #0b1030;
+  --color-night-700: #121845;
+  --color-night-600: #1b2360;
+
+  /* Purple / violet */
+  --color-violet-300: #c4b5ff;
+  --color-violet-400: #a78bff;
+  --color-violet-500: #8b5cf6;
+  --color-violet-600: #7c3aed;
+  --color-violet-700: #6d28d9;
+
+  /* Accent glow (magenta-violet, from refs) */
+  --color-glow-500: #9747ff;
+  --color-glow-400: #b06bff;
+
+  /* Warm spotlight (from hero light) */
+  --color-amber-300: #ffd9a8;
+  --color-amber-400: #ffb86b;
+
+  --font-display: 'Sora', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-night-950);
+  color: #eef1ff;
+  font-family: var(--font-body);
+  font-feature-settings: 'ss01', 'cv01';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.55;
+}
+
+::selection {
+  background: var(--color-glow-500);
+  color: #fff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-night-950);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--color-violet-600), var(--color-night-700));
+  border-radius: 999px;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+/* ============================================================
+   Reusable utility classes
+   ============================================================ */
+
+/* Section wrapper */
+.section {
+  position: relative;
+  padding-block: clamp(4.5rem, 10vw, 9rem);
+}
+.container-x {
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+/* Eyebrow / kicker */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-violet-300);
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-violet-400) 30%, transparent);
+  background: color-mix(in srgb, var(--color-violet-600) 12%, transparent);
+  backdrop-filter: blur(8px);
+}
+.kicker::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-glow-400);
+  box-shadow: 0 0 12px 2px var(--color-glow-400);
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(100deg, #fff 0%, var(--color-violet-300) 45%, var(--color-glow-400) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.text-glow {
+  color: var(--color-glow-400);
+}
+
+/* Glass card */
+.glass {
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--color-night-700) 55%, transparent),
+    color-mix(in srgb, var(--color-night-900) 70%, transparent)
+  );
+  border: 1px solid color-mix(in srgb, var(--color-violet-400) 16%, transparent);
+  border-radius: 1.5rem;
+  backdrop-filter: blur(14px);
+  box-shadow:
+    0 1px 0 0 color-mix(in srgb, #fff 6%, transparent) inset,
+    0 30px 60px -30px rgba(0, 0, 0, 0.7);
+}
+
+/* Primary CTA button */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  padding: 1.05rem 2.1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.35s var(--ease-smooth), box-shadow 0.35s var(--ease-smooth);
+  isolation: isolate;
+}
+.btn-primary {
+  color: #fff;
+  background: linear-gradient(100deg, var(--color-violet-600), var(--color-glow-500) 60%, var(--color-violet-500));
+  background-size: 200% 100%;
+  box-shadow:
+    0 10px 30px -8px color-mix(in srgb, var(--color-glow-500) 70%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--color-violet-300) 30%, transparent) inset;
+  animation: btn-shimmer 6s linear infinite;
+}
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 18px 45px -10px color-mix(in srgb, var(--color-glow-500) 85%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--color-violet-300) 45%, transparent) inset;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(120px 60px at var(--mx, 50%) -10%, rgba(255, 255, 255, 0.45), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-smooth);
+  z-index: -1;
+}
+.btn-primary:hover::after {
+  opacity: 1;
+}
+.btn-ghost {
+  color: #eef1ff;
+  border: 1px solid color-mix(in srgb, var(--color-violet-300) 30%, transparent);
+  background: color-mix(in srgb, var(--color-night-700) 40%, transparent);
+  backdrop-filter: blur(8px);
+}
+.btn-ghost:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-violet-400);
+}
+
+@keyframes btn-shimmer {
+  to {
+    background-position: 200% 0;
+  }
+}
+
+/* Pulsing ring for emphasis */
+.pulse-ring {
+  animation: pulse-ring 2.4s var(--ease-smooth) infinite;
+}
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-glow-500) 55%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 18px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+/* Ambient blobs */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Hairline divider */
+.hairline {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-violet-400) 50%, transparent),
+    transparent
+  );
+}
+
+/* ============================================================
+   Scroll reveal
+   ============================================================ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    opacity 0.9s var(--ease-smooth),
+    transform 0.9s var(--ease-smooth);
+  will-change: opacity, transform;
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+[data-reveal][data-reveal='scale'] {
+  transform: translateY(20px) scale(0.96);
+}
+[data-reveal-delay='1'] { transition-delay: 0.08s; }
+[data-reveal-delay='2'] { transition-delay: 0.16s; }
+[data-reveal-delay='3'] { transition-delay: 0.24s; }
+[data-reveal-delay='4'] { transition-delay: 0.32s; }
+[data-reveal-delay='5'] { transition-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none;
+  }
+  .btn-primary { animation: none; }
+  .pulse-ring { animation: none; }
+}
+
+/* Marquee */
+.marquee {
+  display: flex;
+  gap: 3rem;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Floating subtle */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.float-soft {
+  animation: float-soft 7s ease-in-out infinite;
+}
+
+/* Grid noise overlay helper */
+.grid-overlay {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-violet-400) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-violet-400) 6%, transparent) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+}

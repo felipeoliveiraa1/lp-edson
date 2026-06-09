@@ -1,0 +1,120 @@
+---
+const items = [
+  {
+    title: 'Falar de um jeito que escutam até o fim',
+    text: 'Construa uma fala que prende a atenção do primeiro ao último segundo, sem perder a plateia nos primeiros 3 minutos.',
+  },
+  {
+    title: 'Mensagens que ficam gravadas na mente',
+    text: 'Aprenda a estruturar ideias que permanecem na memória de quem ouve muito depois de você sair do palco.',
+  },
+  {
+    title: 'Quebrar objeções sem insistência',
+    text: 'Use percepção estratégica para dissolver resistências de forma natural — sem aquela pressão chata de venda.',
+  },
+  {
+    title: 'Posicionamento com segurança',
+    text: 'Tenha presença real em palestras, reuniões, apresentações e vendas, com a autoridade de quem sabe quem é.',
+  },
+  {
+    title: 'Evitar os erros que custam respeito',
+    text: 'Identifique e elimine os deslizes de comunicação que fazem você perder credibilidade e oportunidades.',
+  },
+  {
+    title: 'Ilusionismo estratégico aplicado',
+    text: 'Pela primeira vez, o ilusionismo de Issao se une ao desenvolvimento humano de Edson num único dia de imersão.',
+  },
+];
+---
+
+<section class="section structure">
+  <div class="container-x">
+    <div class="structure-head" data-reveal>
+      <span class="kicker">A estrutura que transforma</span>
+      <h2 class="structure-title">
+        A combinação que transforma conteúdo
+        <span class="text-gradient">em autoridade de palco</span>
+      </h2>
+      <p class="structure-lead">
+        Edson Lins e Issao Imamura criaram um formato de imersão inédito no
+        mercado. Em 1 dia, eles revelam os segredos que separam quem sobe ao
+        palco e é levado a sério de quem perde a atenção da plateia logo no
+        começo.
+      </p>
+    </div>
+
+    <div class="structure-grid">
+      {items.map((it, i) => (
+        <article class="feature glass" data-reveal data-reveal-delay={(i % 3) + 1}>
+          <span class="feature-num">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="feature-title">{it.title}</h3>
+          <p class="feature-text">{it.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .structure-head { max-width: 760px; }
+  .structure-title {
+    margin-top: 1.1rem;
+    font-size: clamp(1.8rem, 4.4vw, 2.85rem);
+    font-weight: 800;
+  }
+  .structure-lead {
+    margin-top: 1.3rem;
+    font-size: clamp(1rem, 2.1vw, 1.18rem);
+    color: color-mix(in srgb, #fff 70%, transparent);
+    max-width: 62ch;
+  }
+  .structure-grid {
+    margin-top: 3.4rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+  .feature {
+    padding: 2rem 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s var(--ease-smooth), border-color 0.4s var(--ease-smooth);
+  }
+  .feature::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(220px 120px at 100% 0%, color-mix(in srgb, var(--color-glow-500) 18%, transparent), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.45s var(--ease-smooth);
+  }
+  .feature:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--color-violet-400) 38%, transparent);
+  }
+  .feature:hover::before { opacity: 1; }
+  .feature-num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--color-glow-400);
+    letter-spacing: 0.1em;
+  }
+  .feature-title {
+    margin-top: 0.9rem;
+    font-size: 1.22rem;
+    font-weight: 700;
+  }
+  .feature-text {
+    margin-top: 0.7rem;
+    font-size: 0.97rem;
+    color: color-mix(in srgb, #fff 66%, transparent);
+    position: relative;
+  }
+  @media (min-width: 720px) {
+    .structure-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1040px) {
+    .structure-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

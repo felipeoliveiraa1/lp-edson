@@ -1,0 +1,67 @@
+---
+import { site } from '../data/site';
+import SceneBg from './SceneBg.astro';
+---
+
+<section class="section finalcta">
+  <SceneBg src="/img/scenes/speaker_stage.webp" position="center 35%" opacity={0.3} />
+  <div class="fc-glow" aria-hidden="true"></div>
+  <div class="grid-overlay fc-grid" aria-hidden="true"></div>
+  <div class="container-x fc-inner" data-reveal>
+    <span class="kicker">Sua vaga · Imersão Palco Zero</span>
+    <h2 class="fc-title">
+      Em 1 dia você sobe ao palco sabendo
+      <span class="text-gradient">exatamente quem você é</span> — e sai com a
+      palestra gravada.
+    </h2>
+    <p class="fc-sub">
+      {site.eventDateLabel} · {site.eventTime} · {site.eventCity}
+    </p>
+    <a href={site.ctaHref} class="btn btn-primary pulse-ring fc-btn">{site.ctaLabel}</a>
+    <p class="fc-note">7 dias de garantia incondicional · vagas limitadas</p>
+  </div>
+</section>
+
+<style>
+  .finalcta {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding-block: clamp(5rem, 12vw, 9rem);
+    isolation: isolate;
+  }
+  .fc-glow {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 70vw;
+    height: 70vw;
+    max-width: 760px;
+    max-height: 760px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--color-glow-500) 30%, transparent), transparent 62%);
+    filter: blur(30px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .fc-grid { position: absolute; inset: 0; z-index: 0; }
+  .fc-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+  }
+  .fc-title {
+    margin-top: 1.2rem;
+    font-size: clamp(1.9rem, 5vw, 3.2rem);
+    font-weight: 800;
+  }
+  .fc-sub {
+    margin-top: 1.4rem;
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--color-violet-300);
+    letter-spacing: 0.02em;
+  }
+  .fc-btn { margin-top: 2.2rem; font-size: 1.1rem; padding: 1.2rem 2.6rem; }
+  .fc-note { margin-top: 1.2rem; font-size: 0.9rem; color: color-mix(in srgb, #fff 60%, transparent); }
+</style>

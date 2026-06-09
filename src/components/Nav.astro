@@ -1,0 +1,171 @@
+---
+import Logo from './Logo.astro';
+import { site, navLinks } from '../data/site';
+---
+
+<header id="nav" class="nav" data-nav>
+  <div class="container-x nav-inner">
+    <Logo />
+
+    <nav class="nav-links" aria-label="Navegação principal">
+      {navLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+
+    <div class="nav-actions">
+      <a href={site.ctaHref} class="btn btn-primary nav-cta">{site.ctaLabel}</a>
+      <button class="nav-burger" aria-label="Abrir menu" data-burger>
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div class="nav-mobile" data-mobile-menu>
+    {navLinks.map((l) => <a href={l.href} data-mobile-link>{l.label}</a>)}
+    <a href={site.ctaHref} class="btn btn-primary">{site.ctaLabel}</a>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: background 0.4s var(--ease-smooth), backdrop-filter 0.4s var(--ease-smooth),
+      border-color 0.4s var(--ease-smooth);
+    border-bottom: 1px solid transparent;
+  }
+  .nav[data-scrolled] {
+    background: color-mix(in srgb, var(--color-night-950) 78%, transparent);
+    backdrop-filter: blur(16px);
+    border-bottom-color: color-mix(in srgb, var(--color-violet-400) 14%, transparent);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4.75rem;
+    gap: 1rem;
+  }
+  .nav-links {
+    display: none;
+    gap: 2rem;
+  }
+  .nav-links a {
+    color: color-mix(in srgb, #fff 78%, transparent);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: color 0.25s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    height: 2px;
+    width: 0;
+    background: var(--color-glow-400);
+    transition: width 0.3s var(--ease-smooth);
+  }
+  .nav-links a:hover {
+    color: #fff;
+  }
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .nav-cta {
+    display: none;
+    padding: 0.7rem 1.4rem;
+    font-size: 0.9rem;
+  }
+  .nav-burger {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0.6rem;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+  .nav-burger span {
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.3s var(--ease-smooth), opacity 0.3s;
+  }
+  .nav[data-open] .nav-burger span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav[data-open] .nav-burger span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav[data-open] .nav-burger span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .nav-mobile {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.5rem clamp(1.25rem, 5vw, 2.5rem) 2.25rem;
+    background: color-mix(in srgb, var(--color-night-900) 97%, transparent);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-violet-400) 16%, transparent);
+    transform: translateY(-12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease-smooth), transform 0.3s var(--ease-smooth);
+  }
+  .nav[data-open] .nav-mobile {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .nav-mobile a:not(.btn) {
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+
+  @media (min-width: 900px) {
+    .nav-links { display: flex; }
+    .nav-cta { display: inline-flex; }
+    .nav-burger { display: none; }
+    .nav-mobile { display: none; }
+  }
+</style>
+
+<script>
+  const nav = document.querySelector('[data-nav]') as HTMLElement;
+  const burger = document.querySelector('[data-burger]');
+
+  const onScroll = () => {
+    if (window.scrollY > 24) nav.setAttribute('data-scrolled', '');
+    else nav.removeAttribute('data-scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  burger?.addEventListener('click', () => {
+    nav.toggleAttribute('data-open');
+  });
+  document.querySelectorAll('[data-mobile-link]').forEach((a) =>
+    a.addEventListener('click', () => nav.removeAttribute('data-open'))
+  );
+</script>

@@ -1,0 +1,85 @@
+---
+import SceneBg from './SceneBg.astro';
+const stats = [
+  { value: '+1.000', label: 'projetos exclusivos realizados por Issao Imamura' },
+  { value: '+300', label: 'empresas impactadas pela metodologia' },
+  { value: '+1 milhão', label: 'de pessoas alcançadas com as técnicas' },
+  { value: '3 min', label: 'é o tempo que você tem para prender a plateia' },
+];
+---
+
+<section id="metodo" class="section market">
+  <SceneBg src="/img/scenes/purple_stage.webp" position="center" opacity={0.3} />
+  <div class="blob" style="background: var(--color-violet-700); width: 420px; height: 420px; top: -60px; right: -80px;"></div>
+
+  <div class="container-x">
+    <div class="market-head" data-reveal>
+      <span class="kicker">O contexto</span>
+      <h2 class="market-title">
+        O mercado de comunicação corporativa
+        <span class="text-gradient">está explodindo</span>
+      </h2>
+      <p class="market-lead">
+        A pergunta é simples: você vai se preparar para falar em público com a
+        autoridade que merece — ou vai continuar deixando oportunidades para
+        quem já aprendeu?
+      </p>
+    </div>
+
+    <div class="stats-grid">
+      {stats.map((s, i) => (
+        <div class="stat glass" data-reveal data-reveal-delay={(i % 4) + 1}>
+          <span class="stat-value text-gradient">{s.value}</span>
+          <span class="stat-label">{s.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .market { padding-top: clamp(3.5rem, 7vw, 6rem); isolation: isolate; }
+  .market .container-x { position: relative; z-index: 2; }
+  .market-head { max-width: 720px; }
+  .market-title {
+    margin-top: 1.1rem;
+    font-size: clamp(1.9rem, 4.6vw, 3rem);
+    font-weight: 800;
+  }
+  .market-lead {
+    margin-top: 1.3rem;
+    font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+    color: color-mix(in srgb, #fff 72%, transparent);
+    max-width: 58ch;
+  }
+  .stats-grid {
+    margin-top: 3.2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .stat {
+    padding: 1.8rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: transform 0.4s var(--ease-smooth), border-color 0.4s var(--ease-smooth);
+  }
+  .stat:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--color-violet-400) 40%, transparent);
+  }
+  .stat-value {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.95rem;
+    color: color-mix(in srgb, #fff 66%, transparent);
+  }
+  @media (min-width: 880px) {
+    .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
