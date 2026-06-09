@@ -1,6 +1,6 @@
 // Configuração central da landing page — edite aqui textos e links principais.
 export const site = {
-  brand: 'PALCO ZERO',
+  brand: 'VOZ DE AUTORIDADE',
   tagline: 'Imersão presencial',
   // Link de conversão (WhatsApp / checkout). Troque pelo link real.
   ctaHref: 'https://wa.me/5511999999999?text=Quero%20garantir%20minha%20vaga%20na%20Imers%C3%A3o%20Palco%20Zero',

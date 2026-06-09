@@ -1,7 +1,7 @@
 ---
-// Logo de marca — wordmark "PALCO ZERO" com símbolo.
+// Logo de marca — wordmark "VOZ DE AUTORIDADE" com símbolo de holofote.
 ---
-<a href="#topo" class="logo" aria-label="Palco Zero, início">
+<a href="#topo" class="logo" aria-label="Voz de Autoridade, início">
   <span class="logo-mark" aria-hidden="true">
     <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -16,7 +16,7 @@
     </svg>
   </span>
   <span class="logo-text">
-    <strong>PALCO</strong><em>ZERO</em>
+    <em>VOZ DE</em><strong>AUTORIDADE</strong>
   </span>
 </a>
 
@@ -41,17 +41,21 @@
   }
   .logo-text {
     font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.05rem;
-    letter-spacing: 0.14em;
     line-height: 1;
     display: inline-flex;
-    gap: 0.28rem;
+    flex-direction: column;
+    gap: 0.12rem;
   }
-  .logo-text strong { font-weight: 800; }
+  .logo-text strong {
+    font-weight: 800;
+    font-size: 0.98rem;
+    letter-spacing: 0.09em;
+  }
   .logo-text em {
     font-style: normal;
     font-weight: 600;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
     color: var(--color-violet-300);
   }
 </style>

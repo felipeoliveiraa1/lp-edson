@@ -82,37 +82,31 @@ const { compact = false } = Astro.props;
     .countdown:not(.countdown--compact) .cd-num { font-size: clamp(1.15rem, 6.5vw, 1.7rem); }
   }
 
-  /* ===== Variante compacta (barra do topo) ===== */
-  .countdown--compact { gap: 0.3rem; }
+  /* ===== Variante compacta (barra do topo) — cards menores ===== */
+  .countdown--compact { gap: 0.35rem; }
   .countdown--compact .cd-unit {
-    min-width: 0;
-    flex-direction: row;
-    align-items: baseline;
-    gap: 0.18rem;
-    padding: 0;
-    background: none;
-    border: none;
-    box-shadow: none;
-    backdrop-filter: none;
+    min-width: 2.7rem;
+    padding: 0.25rem 0.35rem 0.2rem;
+    border-radius: 0.55rem;
+    background: color-mix(in srgb, #000 22%, transparent);
+    border: 1px solid color-mix(in srgb, #fff 22%, transparent);
+    box-shadow: 0 4px 12px -8px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(6px);
   }
   .countdown--compact .cd-num {
-    font-size: 0.95rem;
-    background: none;
-    -webkit-text-fill-color: #fff;
-    color: #fff;
+    font-size: 1.05rem;
+    background: linear-gradient(180deg, #fff, var(--color-violet-300));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
   .countdown--compact .cd-label {
-    margin-top: 0;
-    font-size: 0.6rem;
-    letter-spacing: 0.04em;
-    color: color-mix(in srgb, #fff 62%, transparent);
+    margin-top: 0.05rem;
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    color: color-mix(in srgb, #fff 72%, transparent);
   }
-  .countdown--compact .cd-sep {
-    font-size: 0.85rem;
-    margin-top: 0;
-    align-self: center;
-    opacity: 0.5;
-  }
+  .countdown--compact .cd-sep { display: none; }
 </style>
 
 <script>
