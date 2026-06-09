@@ -73,9 +73,11 @@ import { site } from '../data/site';
     align-self: flex-start;
     margin-top: 0.85rem;
   }
-  @media (max-width: 420px) {
-    .cd-unit { min-width: 3.4rem; }
+  @media (max-width: 460px) {
+    .countdown { gap: 0.35rem; width: 100%; }
+    .cd-unit { min-width: 0; flex: 1; padding: 0.6rem 0.2rem 0.5rem; }
     .cd-sep { display: none; }
+    .cd-num { font-size: clamp(1.15rem, 6.5vw, 1.7rem); }
   }
 </style>
 

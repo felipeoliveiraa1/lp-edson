@@ -6,7 +6,10 @@ import { site } from '../data/site';
 <section id="topo" class="hero">
   <!-- Background image -->
   <div class="hero-bg" aria-hidden="true">
-    <img src="/img/new-hero.webp" alt="" fetchpriority="high" decoding="async" />
+    <picture>
+      <source media="(max-width: 600px)" srcset="/img/mobile-edson.webp" />
+      <img src="/img/new-hero.webp" alt="" fetchpriority="high" decoding="async" />
+    </picture>
   </div>
   <!-- Gradient veils for legibility + depth -->
   <div class="hero-veil" aria-hidden="true"></div>
@@ -93,13 +96,13 @@ import { site } from '../data/site';
     inset: 0;
     z-index: 1;
     background:
-      /* tinta diagonal: roxo + azul-marinho à esquerda, some à direita */
+      /* tinta diagonal: escura só na borda esquerda, clareia rápido sobre o Edson */
       linear-gradient(
         105deg,
-        color-mix(in srgb, var(--color-night-800) 78%, var(--color-violet-700)) 0%,
-        color-mix(in srgb, var(--color-night-900) 70%, transparent) 26%,
-        color-mix(in srgb, var(--color-night-900) 28%, transparent) 50%,
-        transparent 76%
+        color-mix(in srgb, var(--color-night-800) 72%, var(--color-violet-700)) 0%,
+        color-mix(in srgb, var(--color-night-900) 42%, transparent) 16%,
+        color-mix(in srgb, var(--color-night-900) 12%, transparent) 36%,
+        transparent 60%
       ),
       /* base em azul-marinho com leve roxo */
       linear-gradient(
@@ -136,6 +139,14 @@ import { site } from '../data/site';
     max-width: 620px;
     text-shadow: 0 2px 30px rgba(4, 5, 15, 0.7), 0 1px 3px rgba(4, 5, 15, 0.5);
   }
+  /* selo mais sólido pra destacar sobre a imagem */
+  .hero .kicker {
+    background: color-mix(in srgb, var(--color-night-800) 86%, var(--color-violet-600));
+    border-color: color-mix(in srgb, var(--color-violet-400) 55%, transparent);
+    color: #e9ddff;
+    box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.7);
+  }
+
   /* destaques: gradiente roxo -> claro, com brilho roxo (sem sombra escura) */
   .hero-title .text-gradient {
     background: linear-gradient(100deg, #a877ff 0%, #d8c4ff 55%, #f4eeff 100%);
@@ -230,23 +241,44 @@ import { site } from '../data/site';
     100% { opacity: 0; }
   }
   @media (max-width: 600px) {
+    /* Background mobile dedicado: experts no topo, texto na área navy de baixo */
     .hero {
       align-items: flex-end;
-      padding-top: 6rem;
-      padding-bottom: clamp(2.5rem, 7vh, 4rem);
+      min-height: 100svh;
+      padding-top: 5rem;
+      padding-bottom: clamp(1.25rem, 3.5vh, 2.25rem);
     }
-    .hero-bg img { object-position: 62% 12%; }
-    /* Reforça o escurecimento na base pra o conteúdo descer e ficar legível */
+    .hero-bg img {
+      object-position: center top;
+      animation: none;
+    }
+    .hero-glow { display: none; }
+    /* a arte mobile já reserva a área escura embaixo; só um leve reforço na base */
     .hero-veil {
-      background:
-        linear-gradient(
-          to top,
-          var(--color-night-950) 18%,
-          color-mix(in srgb, var(--color-night-950) 70%, transparent) 48%,
-          transparent 82%
-        );
+      background: linear-gradient(to top, var(--color-night-950) 4%, transparent 42%);
     }
-    .hero-content { margin-top: auto; }
+    .hero-content {
+      margin-top: auto;
+      max-width: none;
+      text-align: center;
+    }
+    /* compacta o conteúdo pra descer pra área navy, abaixo dos experts */
+    .hero-pretitle {
+      margin-top: 0.7rem;
+      font-size: 0.86rem;
+      max-width: 32ch;
+      margin-inline: auto;
+    }
+    .hero-title { margin-top: 0.55rem; font-size: clamp(1.4rem, 6.2vw, 1.95rem); }
+    .hero-sub {
+      margin-top: 0.85rem;
+      font-size: 0.92rem;
+      max-width: 40ch;
+      margin-inline: auto;
+    }
+    .hero-actions { margin-top: 1.3rem; justify-content: center; }
+    .hero-meta { justify-content: center; width: 100%; }
+    .hero-countdown { margin-top: 1.5rem; align-self: center; }
     .scroll-cue { display: none; }
   }
 </style>
