@@ -36,11 +36,19 @@
 /* ============================================================
    Base
    ============================================================ */
+:root {
+  --bar-h: 2.6rem;
+}
+@media (max-width: 600px) {
+  :root { --bar-h: 2.3rem; }
+}
+
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
   max-width: 100%;
+  scroll-padding-top: calc(var(--bar-h) + 4.75rem);
 }
 
 body {

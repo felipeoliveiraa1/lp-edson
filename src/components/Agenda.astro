@@ -5,19 +5,25 @@ const phases = [
     tag: 'Manhã',
     title: 'Do bloqueio ao desbloqueio',
     lead: 'Sua primeira experiência com ilusionismo estratégico.',
-    text: 'Issao Imamura conduz uma abertura que quebra os padrões internos que travam sua comunicação. Você entende, pela primeira vez, de onde vem o medo do julgamento — e o que fazer com ele.',
+    text: 'Issao Imamura conduz uma abertura que quebra os padrões internos que travam sua comunicação. Você entende, pela primeira vez, de onde vem o medo do julgamento, e o que fazer com ele.',
+    photo: '/img/agenda-manha.webp',
+    pos: 'center top',
   },
   {
     tag: 'Tarde',
     title: 'A construção da palestra',
     lead: 'O framework P.Z. entra em ação.',
-    text: 'Edson Lins conduz o desbloqueio comportamental e trabalha sua identidade de palestrante. Você monta o roteiro: abertura de impacto, mensagem central, histórias âncora e CTA — com a sua voz, a sua história e o seu posicionamento.',
+    text: 'Edson Lins conduz o desbloqueio comportamental e trabalha sua identidade de palestrante. Você monta o roteiro: abertura de impacto, mensagem central, histórias âncora e CTA, com a sua voz, a sua história e o seu posicionamento.',
+    photo: '/img/agenda-tarde.webp',
+    pos: 'center 28%',
   },
   {
     tag: 'Noite',
     title: 'O palco é seu',
     lead: 'Laboratório de presença e performance.',
     text: 'Cada participante sobe ao palco e apresenta sua palestra para a turma, com gravação profissional e feedback ao vivo de ambos os mentores. Você vai embora com o vídeo.',
+    photo: '/img/agenda-noite.webp',
+    pos: 'center',
   },
 ];
 ---
@@ -44,10 +50,15 @@ const phases = [
             <span>{i + 1}</span>
           </div>
           <div class="phase-card glass">
-            <span class="phase-tag">{p.tag}</span>
-            <h3 class="phase-title">{p.title}</h3>
-            <p class="phase-lead">{p.lead}</p>
-            <p class="phase-text">{p.text}</p>
+            <div class="phase-photo">
+              <img src={p.photo} alt={`${p.tag}: ${p.title}`} style={`object-position: ${p.pos};`} loading="lazy" decoding="async" />
+              <span class="phase-tag phase-tag-over">{p.tag}</span>
+            </div>
+            <div class="phase-body">
+              <h3 class="phase-title">{p.title}</h3>
+              <p class="phase-lead">{p.lead}</p>
+              <p class="phase-text">{p.text}</p>
+            </div>
           </div>
         </li>
       ))}
@@ -114,10 +125,32 @@ const phases = [
     background: linear-gradient(var(--color-violet-500), transparent);
   }
   .phase-card {
-    padding: 1.8rem 1.8rem;
+    overflow: hidden;
     transition: transform 0.4s var(--ease-smooth);
   }
   .phase-card:hover { transform: translateX(6px); }
+
+  /* Foto da fase */
+  .phase-photo {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .phase-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease-smooth);
+  }
+  .phase-card:hover .phase-photo img { transform: scale(1.05); }
+  .phase-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, color-mix(in srgb, var(--color-night-900) 92%, transparent) 2%, transparent 55%);
+  }
+  .phase-body { padding: 1.6rem 1.8rem 1.8rem; }
+
   .phase-tag {
     display: inline-block;
     font-family: var(--font-display);
@@ -130,8 +163,17 @@ const phases = [
     border-radius: 999px;
     border: 1px solid color-mix(in srgb, var(--color-violet-400) 28%, transparent);
   }
+  .phase-tag-over {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    z-index: 2;
+    color: #fff;
+    background: color-mix(in srgb, var(--color-night-900) 65%, transparent);
+    border-color: color-mix(in srgb, var(--color-violet-400) 40%, transparent);
+    backdrop-filter: blur(6px);
+  }
   .phase-title {
-    margin-top: 0.9rem;
     font-size: 1.4rem;
     font-weight: 700;
   }

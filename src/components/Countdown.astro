@@ -1,8 +1,10 @@
 ---
 import { site } from '../data/site';
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
 ---
 
-<div class="countdown" data-countdown data-target={site.eventDateISO} aria-live="polite">
+<div class:list={['countdown', { 'countdown--compact': compact }]} data-countdown data-target={site.eventDateISO} aria-live="polite">
   <div class="cd-unit">
     <span class="cd-num" data-days>00</span>
     <span class="cd-label">dias</span>
@@ -74,10 +76,42 @@ import { site } from '../data/site';
     margin-top: 0.85rem;
   }
   @media (max-width: 460px) {
-    .countdown { gap: 0.35rem; width: 100%; }
-    .cd-unit { min-width: 0; flex: 1; padding: 0.6rem 0.2rem 0.5rem; }
-    .cd-sep { display: none; }
-    .cd-num { font-size: clamp(1.15rem, 6.5vw, 1.7rem); }
+    .countdown:not(.countdown--compact) { gap: 0.35rem; width: 100%; }
+    .countdown:not(.countdown--compact) .cd-unit { min-width: 0; flex: 1; padding: 0.6rem 0.2rem 0.5rem; }
+    .countdown:not(.countdown--compact) .cd-sep { display: none; }
+    .countdown:not(.countdown--compact) .cd-num { font-size: clamp(1.15rem, 6.5vw, 1.7rem); }
+  }
+
+  /* ===== Variante compacta (barra do topo) ===== */
+  .countdown--compact { gap: 0.3rem; }
+  .countdown--compact .cd-unit {
+    min-width: 0;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.18rem;
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+  .countdown--compact .cd-num {
+    font-size: 0.95rem;
+    background: none;
+    -webkit-text-fill-color: #fff;
+    color: #fff;
+  }
+  .countdown--compact .cd-label {
+    margin-top: 0;
+    font-size: 0.6rem;
+    letter-spacing: 0.04em;
+    color: color-mix(in srgb, #fff 62%, transparent);
+  }
+  .countdown--compact .cd-sep {
+    font-size: 0.85rem;
+    margin-top: 0;
+    align-self: center;
+    opacity: 0.5;
   }
 </style>
 

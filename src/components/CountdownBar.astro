@@ -1,0 +1,90 @@
+---
+import Countdown from './Countdown.astro';
+import { site } from '../data/site';
+---
+
+<div class="cdbar">
+  <div class="container-x cdbar-inner">
+    <span class="cdbar-label">
+      <span class="cdbar-dot" aria-hidden="true"></span>
+      A imersão começa em
+    </span>
+    <Countdown compact />
+    <a href={site.ctaHref} class="cdbar-cta">{site.ctaLabel}</a>
+  </div>
+</div>
+
+<style>
+  .cdbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 60;
+    height: var(--bar-h);
+    display: flex;
+    align-items: center;
+    background: linear-gradient(100deg, var(--color-violet-700), var(--color-night-800) 70%);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-violet-400) 24%, transparent);
+    box-shadow: 0 6px 20px -12px rgba(0, 0, 0, 0.8);
+  }
+  .cdbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+  }
+  .cdbar-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: color-mix(in srgb, #fff 88%, transparent);
+    white-space: nowrap;
+  }
+  .cdbar-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: #ffd9a8;
+    box-shadow: 0 0 10px 2px #ffd9a8;
+    animation: cdbar-pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes cdbar-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+  .cdbar-cta {
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, #fff 16%, transparent);
+    border: 1px solid color-mix(in srgb, #fff 30%, transparent);
+    transition: background 0.25s, transform 0.25s var(--ease-smooth);
+    white-space: nowrap;
+  }
+  .cdbar-cta:hover {
+    background: color-mix(in srgb, #fff 28%, transparent);
+    transform: translateY(-1px);
+  }
+
+  /* Mobile: barra mais enxuta */
+  @media (max-width: 600px) {
+    .cdbar-inner { gap: 0.6rem; justify-content: space-between; }
+    .cdbar-label { font-size: 0.68rem; }
+    .cdbar-label .cdbar-dot { display: none; }
+    .cdbar-cta { display: none; }
+  }
+  @media (max-width: 380px) {
+    .cdbar-label { display: none; }
+    .cdbar-inner { justify-content: center; }
+  }
+</style>
