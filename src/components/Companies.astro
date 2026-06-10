@@ -1,33 +1,39 @@
 ---
-// Logos das empresas onde a metodologia já foi aplicada.
-// Placeholders em texto — substitua por <img> dos logos reais quando disponíveis.
-const companies = ['Indústria', 'Varejo', 'Tecnologia', 'Saúde', 'Educação', 'Serviços Financeiros'];
+// Marcas / autoridades de empresas que já aplicaram o método.
+const segmentos = ['Indústria', 'Varejo', 'Tecnologia', 'Saúde', 'Educação', 'Serviços Financeiros'];
 ---
 
-<section class="section companies">
+<section id="marcas" class="section companies">
   <div class="container-x">
     <div class="companies-head" data-reveal>
-      <span class="kicker">Validação de mercado</span>
+      <span class="kicker">Autoridades & empresas</span>
       <h2 class="companies-title">
-        Uma metodologia que já impactou líderes das
-        <span class="text-gradient">maiores empresas do Brasil</span>
+        Marcas que já aplicaram o método
+        <span class="text-gradient">Voz de Autoridade</span>
       </h2>
       <p class="companies-lead">
-        O ilusionismo estratégico e o método comportamental revelados na imersão
-        já foram aplicados em múltiplos segmentos.
+        A percepção estratégica e o método comportamental revelados na imersão
+        já foram aplicados em líderes e equipes de grandes empresas.
       </p>
     </div>
 
-    <div class="logos" data-reveal>
-      {companies.map((c) => (
-        <div class="logo-chip">{c}</div>
-      ))}
+    <div class="marcas-card" data-reveal>
+      <img
+        src="/img/marcas.webp"
+        alt="Logos de empresas que já aplicaram o método: Itaú, Bosch, Coca-Cola, LATAM, McDonald's, Mercedes-Benz, P&G, entre outras"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+
+    <div class="segmentos" data-reveal>
+      {segmentos.map((c) => <span class="segmento">{c}</span>)}
     </div>
   </div>
 </section>
 
 <style>
-  .companies-head { text-align: center; max-width: 720px; margin-inline: auto; }
+  .companies-head { text-align: center; max-width: 760px; margin-inline: auto; }
   .companies-title {
     margin-top: 1.1rem;
     font-size: clamp(1.6rem, 3.8vw, 2.4rem);
@@ -37,28 +43,38 @@ const companies = ['Indústria', 'Varejo', 'Tecnologia', 'Saúde', 'Educação',
     margin-top: 1.1rem;
     color: color-mix(in srgb, #fff 68%, transparent);
   }
-  .logos {
+
+  .marcas-card {
     margin-top: 2.8rem;
+    background: #ffffff;
+    border: 1px solid color-mix(in srgb, var(--color-violet-400) 18%, transparent);
+    border-radius: 1.5rem;
+    padding: clamp(1.1rem, 3.5vw, 2.2rem);
+    box-shadow: 0 40px 80px -45px rgba(0, 0, 0, 0.8);
+  }
+  .marcas-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.6rem;
+  }
+
+  .segmentos {
+    margin-top: 2rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.9rem;
+    gap: 0.7rem;
   }
-  .logo-chip {
+  .segmento {
     font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 0.98rem;
+    font-weight: 500;
+    font-size: 0.85rem;
     letter-spacing: 0.02em;
-    color: color-mix(in srgb, #fff 72%, transparent);
-    padding: 0.85rem 1.5rem;
+    color: color-mix(in srgb, #fff 70%, transparent);
+    padding: 0.5rem 1.1rem;
     border-radius: 999px;
     border: 1px solid color-mix(in srgb, var(--color-violet-400) 18%, transparent);
     background: color-mix(in srgb, var(--color-night-800) 50%, transparent);
-    transition: color 0.3s, border-color 0.3s, transform 0.3s var(--ease-smooth);
-  }
-  .logo-chip:hover {
-    color: #fff;
-    border-color: var(--color-violet-400);
-    transform: translateY(-3px);
   }
 </style>
