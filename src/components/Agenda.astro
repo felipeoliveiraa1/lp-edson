@@ -149,7 +149,10 @@ const phases = [
     inset: 0;
     background: linear-gradient(to top, color-mix(in srgb, var(--color-night-900) 92%, transparent) 2%, transparent 55%);
   }
-  .phase-body { padding: 1.6rem 1.8rem 1.8rem; }
+  .phase-body {
+    padding: 1.6rem 1.8rem 1.8rem;
+    background: #ffffff;
+  }
 
   .phase-tag {
     display: inline-block;
@@ -176,15 +179,16 @@ const phases = [
   .phase-title {
     font-size: 1.4rem;
     font-weight: 700;
+    color: var(--color-night-900);
   }
   .phase-lead {
     margin-top: 0.5rem;
-    color: var(--color-violet-300);
-    font-weight: 500;
+    color: var(--color-violet-700);
+    font-weight: 600;
   }
   .phase-text {
     margin-top: 0.7rem;
-    color: color-mix(in srgb, #fff 68%, transparent);
+    color: color-mix(in srgb, var(--color-night-900) 72%, transparent);
     font-size: 0.98rem;
   }
   @media (max-width: 560px) {

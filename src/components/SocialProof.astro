@@ -75,19 +75,21 @@ const testimonials = [
     padding: 2.2rem 1.9rem;
     position: relative;
     transition: transform 0.4s var(--ease-smooth);
+    background: #ffffff;
+    border: 1px solid color-mix(in srgb, var(--color-violet-400) 18%, transparent);
   }
   .testimonial:hover { transform: translateY(-6px); }
   .quote-mark {
     font-family: var(--font-display);
     font-size: 3.5rem;
     line-height: 0.7;
-    color: var(--color-glow-500);
-    opacity: 0.5;
+    color: var(--color-violet-500);
+    opacity: 0.55;
   }
   blockquote {
     margin: 1rem 0 0;
     font-size: 1.05rem;
-    color: color-mix(in srgb, #fff 86%, transparent);
+    color: color-mix(in srgb, var(--color-night-900) 86%, transparent);
     line-height: 1.55;
   }
   figcaption {
@@ -95,8 +97,8 @@ const testimonials = [
     display: flex;
     flex-direction: column;
   }
-  .t-name { font-weight: 600; }
-  .t-role { font-size: 0.88rem; color: var(--color-violet-300); }
+  .t-name { font-weight: 700; color: var(--color-night-900); }
+  .t-role { font-size: 0.88rem; color: var(--color-violet-700); }
   .proof-cta { margin-top: 2.8rem; text-align: center; }
   @media (min-width: 860px) {
     .proof-grid { grid-template-columns: repeat(3, 1fr); }

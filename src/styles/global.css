@@ -27,6 +27,11 @@
   --color-amber-300: #ffd9a8;
   --color-amber-400: #ffb86b;
 
+  /* Gold accent (dourado) */
+  --color-gold-300: #f3d68c;
+  --color-gold-400: #e3b85f;
+  --color-gold-500: #cc9a36;
+
   --font-display: 'Sora', 'Inter', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
 
@@ -175,11 +180,9 @@ h1, h2, h3, h4 {
 .btn-primary {
   color: #fff;
   background: linear-gradient(100deg, var(--color-violet-600), var(--color-glow-500) 60%, var(--color-violet-500));
-  background-size: 200% 100%;
   box-shadow:
     0 10px 30px -8px color-mix(in srgb, var(--color-glow-500) 70%, transparent),
     0 0 0 1px color-mix(in srgb, var(--color-violet-300) 30%, transparent) inset;
-  animation: btn-shimmer 6s linear infinite;
 }
 .btn-primary:hover {
   transform: translateY(-3px) scale(1.02);
@@ -200,6 +203,19 @@ h1, h2, h3, h4 {
 .btn-primary:hover::after {
   opacity: 1;
 }
+.btn-gold {
+  color: #2c1f06;
+  background: linear-gradient(100deg, var(--color-gold-500), var(--color-gold-300) 55%, var(--color-gold-400));
+  box-shadow:
+    0 10px 30px -8px color-mix(in srgb, var(--color-gold-400) 70%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--color-gold-300) 50%, transparent) inset;
+}
+.btn-gold:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 18px 45px -10px color-mix(in srgb, var(--color-gold-400) 90%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--color-gold-300) 65%, transparent) inset;
+}
 .btn-ghost {
   color: #eef1ff;
   border: 1px solid color-mix(in srgb, var(--color-violet-300) 30%, transparent);
@@ -209,12 +225,6 @@ h1, h2, h3, h4 {
 .btn-ghost:hover {
   transform: translateY(-2px);
   border-color: var(--color-violet-400);
-}
-
-@keyframes btn-shimmer {
-  to {
-    background-position: 200% 0;
-  }
 }
 
 /* Pulsing ring for emphasis */
@@ -285,7 +295,6 @@ h1, h2, h3, h4 {
     transform: none !important;
     transition: none;
   }
-  .btn-primary { animation: none; }
   .pulse-ring { animation: none; }
 }
 

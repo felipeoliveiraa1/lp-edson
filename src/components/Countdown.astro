@@ -1,10 +1,10 @@
 ---
 import { site } from '../data/site';
-interface Props { compact?: boolean }
-const { compact = false } = Astro.props;
+interface Props { compact?: boolean; light?: boolean }
+const { compact = false, light = false } = Astro.props;
 ---
 
-<div class:list={['countdown', { 'countdown--compact': compact }]} data-countdown data-target={site.eventDateISO} aria-live="polite">
+<div class:list={['countdown', { 'countdown--compact': compact, 'countdown--light': light }]} data-countdown data-target={site.eventDateISO} aria-live="polite">
   <div class="cd-unit">
     <span class="cd-num" data-days>00</span>
     <span class="cd-label">dias</span>
@@ -107,6 +107,27 @@ const { compact = false } = Astro.props;
     color: color-mix(in srgb, #fff 72%, transparent);
   }
   .countdown--compact .cd-sep { display: none; }
+
+  /* ===== Variante clara (fundo branco, números roxos) ===== */
+  .countdown--light .cd-unit {
+    background: #ffffff;
+    border: 1px solid color-mix(in srgb, var(--color-violet-400) 22%, transparent);
+    box-shadow: 0 16px 34px -20px rgba(0, 0, 0, 0.55);
+    backdrop-filter: none;
+  }
+  .countdown--light .cd-num {
+    background: linear-gradient(180deg, var(--color-violet-600), var(--color-violet-700));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .countdown--light .cd-label {
+    color: color-mix(in srgb, var(--color-night-900) 60%, transparent);
+  }
+  .countdown--light .cd-sep {
+    color: var(--color-violet-500);
+    opacity: 0.55;
+  }
 </style>
 
 <script>
