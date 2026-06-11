@@ -9,7 +9,7 @@ import { site } from '../data/site';
       <span class="cdbar-dot" aria-hidden="true"></span>
       A imersão começa em
     </span>
-    <Countdown compact />
+    <Countdown compact light />
     <a href={site.ctaHref} class="cdbar-cta">{site.ctaLabel}</a>
   </div>
 </div>
@@ -24,9 +24,9 @@ import { site } from '../data/site';
     height: var(--bar-h);
     display: flex;
     align-items: center;
-    background: linear-gradient(100deg, var(--color-violet-700), var(--color-night-800) 70%);
-    border-bottom: 1px solid color-mix(in srgb, var(--color-violet-400) 24%, transparent);
-    box-shadow: 0 6px 20px -12px rgba(0, 0, 0, 0.8);
+    background: linear-gradient(100deg, var(--color-gold-300), var(--color-gold-400) 50%, var(--color-gold-500));
+    border-bottom: 1px solid color-mix(in srgb, #2c1f06 22%, transparent);
+    box-shadow: 0 6px 20px -12px rgba(0, 0, 0, 0.55);
   }
   .cdbar-inner {
     display: flex;
@@ -42,15 +42,15 @@ import { site } from '../data/site';
     font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 0.04em;
-    color: color-mix(in srgb, #fff 88%, transparent);
+    color: #2c1f06;
     white-space: nowrap;
   }
   .cdbar-dot {
     width: 7px;
     height: 7px;
     border-radius: 999px;
-    background: #ffd9a8;
-    box-shadow: 0 0 10px 2px #ffd9a8;
+    background: var(--color-violet-700);
+    box-shadow: 0 0 8px 1px color-mix(in srgb, var(--color-violet-600) 70%, transparent);
     animation: cdbar-pulse 1.8s ease-in-out infinite;
   }
   @keyframes cdbar-pulse {
@@ -64,15 +64,16 @@ import { site } from '../data/site';
     font-weight: 600;
     color: #fff;
     text-decoration: none;
-    padding: 0.4rem 1rem;
+    padding: 0.45rem 1.1rem;
     border-radius: 999px;
-    background: color-mix(in srgb, #fff 16%, transparent);
-    border: 1px solid color-mix(in srgb, #fff 30%, transparent);
+    background: var(--color-violet-700);
+    border: 1px solid color-mix(in srgb, #2c1f06 20%, transparent);
+    box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.5);
     transition: background 0.25s, transform 0.25s var(--ease-smooth);
     white-space: nowrap;
   }
   .cdbar-cta:hover {
-    background: color-mix(in srgb, #fff 28%, transparent);
+    background: var(--color-violet-600);
     transform: translateY(-1px);
   }
 

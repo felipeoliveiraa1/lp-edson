@@ -28,8 +28,8 @@ const loop = [...items, ...items];
     z-index: 2;
     overflow: hidden;
     padding-block: 1.1rem;
-    border-block: 1px solid color-mix(in srgb, var(--color-violet-400) 14%, transparent);
-    background: color-mix(in srgb, var(--color-night-900) 60%, transparent);
+    border-block: 1px solid #e4e4ec;
+    background: #f3f3f5;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   }
@@ -41,8 +41,8 @@ const loop = [...items, ...items];
     font-weight: 600;
     font-size: 1.05rem;
     letter-spacing: 0.01em;
-    color: color-mix(in srgb, #fff 80%, transparent);
+    color: color-mix(in srgb, var(--color-night-900) 82%, transparent);
     white-space: nowrap;
   }
-  .marquee-item svg { color: var(--color-glow-400); }
+  .marquee-item svg { color: var(--color-violet-600); }
 </style>
