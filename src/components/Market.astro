@@ -136,6 +136,7 @@ const noticias = [
   }
   .news-track {
     display: flex;
+    align-items: flex-start;
     gap: 1.1rem;
     width: max-content;
     animation: news-scroll 36s linear infinite;
@@ -145,11 +146,8 @@ const noticias = [
     to { transform: translateX(-50%); }
   }
   .news-card {
-    width: clamp(300px, 86vw, 470px);
-    height: clamp(330px, 52vh, 430px);
+    width: clamp(290px, 82vw, 400px);
     flex-shrink: 0;
-    display: grid;
-    place-items: center;
     padding: 0.7rem;
     background: #fff;
     border-radius: 1rem;
@@ -158,9 +156,8 @@ const noticias = [
     box-shadow: 0 30px 60px -42px rgba(0, 0, 0, 0.85);
   }
   .news-card img {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
+    display: block;
+    width: 100%;
     height: auto;
     border-radius: 0.45rem;
   }
