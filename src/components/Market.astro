@@ -6,6 +6,26 @@ const stats = [
   { value: '+1 milhão', label: 'de pessoas alcançadas com as técnicas' },
   { value: '3 min', label: 'é o tempo que você tem para prender a plateia' },
 ];
+
+// Recortes de imprensa (validação de mercado).
+// Para adicionar a 3ª: salve o webp em public/img e inclua aqui um objeto novo.
+const noticias = [
+  {
+    img: '/img/noticia-folha.webp',
+    fonte: 'Folha de S.Paulo',
+    titulo: 'Mercado de palestras dispara, e empresário planeja cobrar R$ 1 milhão em 2026',
+  },
+  {
+    img: '/img/noticia-valor.webp',
+    fonte: 'Valor Econômico',
+    titulo: 'Cresce a demanda por palestras motivacionais: mercado global pode chegar a US$ 2,9 bi até 2027',
+  },
+  {
+    img: '/img/noticia-exame.webp',
+    fonte: 'Exame · Negócios em Expansão 2025',
+    titulo: '7º lugar no ranking entre 750 empresas: R$ 30 milhões de faturamento e +30 mil alunos formados',
+  },
+];
 ---
 
 <section id="metodo" class="section market">
@@ -33,6 +53,19 @@ const stats = [
           <span class="stat-label">{s.label}</span>
         </div>
       ))}
+    </div>
+
+    <div class="news-block" data-reveal>
+      <span class="news-eyebrow">Na imprensa</span>
+      <div class="news-carousel" aria-label="Recortes de imprensa">
+        <div class="news-track">
+          {[...noticias, ...noticias].map((n, i) => (
+            <figure class="news-card" aria-hidden={i >= noticias.length ? 'true' : undefined}>
+              <img src={n.img} alt={`${n.fonte}: ${n.titulo}`} loading="lazy" decoding="async" />
+            </figure>
+          ))}
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -81,5 +114,57 @@ const stats = [
   }
   @media (min-width: 880px) {
     .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  /* Recortes de imprensa */
+  .news-block { margin-top: clamp(2.6rem, 5vw, 3.6rem); }
+  .news-eyebrow {
+    display: block;
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-violet-300);
+    margin-bottom: 1.4rem;
+  }
+  .news-carousel {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  }
+  .news-track {
+    display: flex;
+    gap: 1.1rem;
+    width: max-content;
+    animation: news-scroll 36s linear infinite;
+  }
+  .news-carousel:hover .news-track { animation-play-state: paused; }
+  @keyframes news-scroll {
+    to { transform: translateX(-50%); }
+  }
+  .news-card {
+    width: clamp(300px, 86vw, 470px);
+    height: clamp(330px, 52vh, 430px);
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    padding: 0.7rem;
+    background: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--color-violet-400) 16%, transparent);
+    box-shadow: 0 30px 60px -42px rgba(0, 0, 0, 0.85);
+  }
+  .news-card img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 0.45rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .news-track { animation: none; flex-wrap: wrap; justify-content: center; width: 100%; }
   }
 </style>

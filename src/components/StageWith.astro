@@ -1,0 +1,162 @@
+---
+// Carrossel "Dividi palcos com" — foto redonda + nome + cargo, em loop infinito.
+//
+// COMO ADICIONAR AS FOTOS (autorizadas):
+// 1. Coloque o arquivo em  src/assets/palco/<slug>.webp  (ou .jpg/.png)
+//    usando o slug indicado em cada pessoa abaixo (ex.: abilio-diniz.webp).
+// 2. Pronto: a foto redonda aparece sozinha no lugar das iniciais.
+const photoMods = import.meta.glob('../assets/palco/*.{webp,jpg,jpeg,png}', {
+  eager: true,
+  import: 'default',
+});
+const photoFor = (slug: string) => {
+  const key = Object.keys(photoMods).find((k) => k.includes(`/${slug}.`));
+  return key ? (photoMods[key] as { src: string }) : null;
+};
+const initials = (name: string) =>
+  name
+    .replace(/^Dr\.?\s+/i, '')
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join('')
+    .toUpperCase();
+
+const people = [
+  { name: 'Abílio Diniz', role: 'GPA', slug: 'abilio-diniz' },
+  { name: 'João Doria Jr', role: 'Ex-prefeito de SP · empresário', slug: 'joao-doria' },
+  { name: 'Fernando Henrique Cardoso', role: 'Ex-presidente do Brasil', slug: 'fhc' },
+  { name: 'Ronaldo Fenômeno', role: 'Ex-seleção · empresário', slug: 'ronaldo' },
+  { name: 'Paulo Vieira', role: 'Criador do método CIS', slug: 'paulo-vieira' },
+  { name: 'Shirleison Kaisser', role: 'Empresário', slug: 'shirleison-kaisser' },
+  { name: 'Pablo Marçal', role: 'Empresário', slug: 'pablo-marcal' },
+  { name: 'Leandro Karnal', role: 'Historiador', slug: 'leandro-karnal' },
+  { name: 'Richard Branson', role: 'Virgin', slug: 'richard-branson' },
+  { name: 'Tallis Gomes', role: 'G4 Educação', slug: 'tallis-gomes' },
+  { name: 'Roberto Shinyashiki', role: 'Escritor', slug: 'roberto-shinyashiki' },
+  { name: 'Dener Lippert', role: 'V4 Company', slug: 'dener-lippert' },
+  { name: 'Nikolas Ferreira', role: 'Deputado federal', slug: 'nikolas-ferreira' },
+  { name: 'Chieko Aoki', role: 'Blue Tree', slug: 'chieko-aoki' },
+  { name: 'Jorge Nishimura', role: 'Jacto', slug: 'jorge-nishimura' },
+  { name: 'Jorge Yamaniski', role: 'Osten Group', slug: 'jorge-yamaniski' },
+  { name: 'Cláudio Duarte', role: 'Pastor', slug: 'claudio-duarte' },
+  { name: 'Eduardo Schroeder', role: 'Cheirin Bão', slug: 'eduardo-schroeder' },
+  { name: 'Luciano Huck', role: 'Apresentador de TV', slug: 'luciano-huck' },
+  { name: 'Marcos Mion', role: 'Apresentador de TV', slug: 'marcos-mion' },
+  { name: 'Eliana', role: 'Apresentadora de TV', slug: 'eliana' },
+  { name: 'Carol Paiffer', role: 'Investidora · Shark Tank', slug: 'carol-paiffer' },
+  { name: 'Geraldo Alckmin', role: 'Vice-presidente da República', slug: 'geraldo-alckmin' },
+  { name: 'Dr. Roberto Kalil Filho', role: 'Incor · Sírio-Libanês', slug: 'roberto-kalil' },
+];
+
+// duplicado para loop contínuo
+const loop = [...people, ...people];
+---
+
+<section class="section stagewith">
+  <div class="container-x">
+    <div class="sw-head" data-reveal>
+      <span class="kicker">Autoridade reconhecida</span>
+      <h2 class="sw-title">Dividi o palco com <span class="text-gradient">gigantes</span></h2>
+    </div>
+  </div>
+
+  <div class="sw-carousel" aria-label="Pessoas com quem dividimos o palco">
+    <div class="sw-track">
+      {loop.map((p, i) => {
+        const photo = photoFor(p.slug);
+        return (
+          <div class="sw-card" aria-hidden={i >= people.length ? 'true' : undefined}>
+            <span class="sw-avatar" data-h={i % 6}>
+              {photo ? (
+                <img src={photo.src} alt={p.name} loading="lazy" decoding="async" />
+              ) : (
+                <span class="sw-initials">{initials(p.name)}</span>
+              )}
+            </span>
+            <span class="sw-info">
+              <span class="sw-name">{p.name}</span>
+              {p.role && <span class="sw-role">{p.role}</span>}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stagewith { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
+  .sw-head { text-align: center; max-width: 640px; margin-inline: auto; }
+  .sw-title {
+    margin-top: 1rem;
+    font-size: clamp(1.6rem, 3.8vw, 2.4rem);
+    font-weight: 800;
+  }
+
+  .sw-carousel {
+    margin-top: 2.6rem;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .sw-track {
+    display: flex;
+    gap: 0.9rem;
+    width: max-content;
+    animation: sw-scroll 60s linear infinite;
+  }
+  .sw-carousel:hover .sw-track { animation-play-state: paused; }
+  @keyframes sw-scroll {
+    to { transform: translateX(-50%); }
+  }
+
+  .sw-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+    padding: 0.55rem 1.1rem 0.55rem 0.55rem;
+    border-radius: 999px;
+    background: linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--color-night-700) 55%, transparent),
+      color-mix(in srgb, var(--color-night-900) 70%, transparent)
+    );
+    border: 1px solid color-mix(in srgb, var(--color-violet-400) 16%, transparent);
+    backdrop-filter: blur(8px);
+  }
+
+  .sw-avatar {
+    width: 3rem;
+    height: 3rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    border: 1px solid color-mix(in srgb, var(--color-violet-300) 30%, transparent);
+  }
+  .sw-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .sw-initials {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: #fff;
+  }
+  /* variação de cor das iniciais por índice */
+  .sw-avatar[data-h='0'] { background: linear-gradient(150deg, #7c3aed, #b06bff); }
+  .sw-avatar[data-h='1'] { background: linear-gradient(150deg, #6d28d9, #9747ff); }
+  .sw-avatar[data-h='2'] { background: linear-gradient(150deg, #1b2360, #7c3aed); }
+  .sw-avatar[data-h='3'] { background: linear-gradient(150deg, #9747ff, #c8902f); }
+  .sw-avatar[data-h='4'] { background: linear-gradient(150deg, #121845, #b06bff); }
+  .sw-avatar[data-h='5'] { background: linear-gradient(150deg, #7c3aed, #1b2360); }
+
+  .sw-info { display: flex; flex-direction: column; line-height: 1.15; white-space: nowrap; }
+  .sw-name { font-family: var(--font-display); font-weight: 600; font-size: 0.98rem; color: #fff; }
+  .sw-role { font-size: 0.78rem; color: color-mix(in srgb, var(--color-violet-300) 90%, transparent); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sw-track { animation: none; flex-wrap: wrap; justify-content: center; width: 100%; }
+  }
+</style>
