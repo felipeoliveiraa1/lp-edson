@@ -233,7 +233,7 @@ h1, h2, h3, h4 {
 }
 @keyframes pulse-ring {
   0% {
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-glow-500) 55%, transparent);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-gold-400) 60%, transparent);
   }
   70% {
     box-shadow: 0 0 0 18px transparent;

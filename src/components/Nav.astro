@@ -12,7 +12,7 @@ import { site, navLinks } from '../data/site';
     </nav>
 
     <div class="nav-actions">
-      <a href={site.ctaHref} class="btn btn-primary nav-cta">{site.ctaLabel}</a>
+      <a href={site.ctaHref} class="btn btn-gold nav-cta">{site.ctaLabel}</a>
       <button class="nav-burger" aria-label="Abrir menu" data-burger>
         <span></span><span></span><span></span>
       </button>
@@ -22,7 +22,7 @@ import { site, navLinks } from '../data/site';
   <!-- Mobile drawer -->
   <div class="nav-mobile" data-mobile-menu>
     {navLinks.map((l) => <a href={l.href} data-mobile-link>{l.label}</a>)}
-    <a href={site.ctaHref} class="btn btn-primary">{site.ctaLabel}</a>
+    <a href={site.ctaHref} class="btn btn-gold">{site.ctaLabel}</a>
   </div>
 </header>
 
